@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://shipi18n.com/docs
+    about: Read the official Shipi18n documentation
+  - name: API Documentation
+    url: https://shipi18n.com/api
+    about: View the API reference and examples
+  - name: Community Discussions
+    url: https://github.com/orgs/Shipi18n/discussions
+    about: Ask questions and discuss ideas with the community
