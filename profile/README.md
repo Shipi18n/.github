@@ -46,6 +46,74 @@ const result = await translate({
 | **API & CLI** | Use programmatically or from your terminal |
 | **Key Management** | Store and manage your translation keys |
 | **Batch Translation** | Translate hundreds of strings in one request |
+| **i18next Pluralization** | Auto-generates CLDR-compliant plural forms for all languages |
+| **ICU MessageFormat** | Preserves ICU syntax like `{count, plural, one {...} other {...}}` |
+| **Namespace Awareness** | Auto-detects and organizes translations by namespace |
+| **Key Validation** | Warns about anti-patterns and suggests best practices |
+
+## i18next Best Practices
+
+Shipi18n is optimized for i18next and follows industry best practices:
+
+### ✅ Automatic Plural Forms
+
+Different languages have different plural rules. Shipi18n automatically generates the correct plural forms for each target language:
+
+- **English/Spanish**: `_one`, `_other` (2 forms)
+- **Russian**: `_one`, `_few`, `_many`, `_other` (4 forms)
+- **Arabic**: `_zero`, `_one`, `_two`, `_few`, `_many`, `_other` (6 forms)
+
+```json
+// Input (English)
+{
+  "item_one": "{{count}} item",
+  "item_other": "{{count}} items"
+}
+
+// Output (Russian) - 4 forms auto-generated!
+{
+  "item_one": "{{count}} предмет",
+  "item_few": "{{count}} предмета",
+  "item_many": "{{count}} предметов",
+  "item_other": "{{count}} предметов"
+}
+```
+
+### ✅ ICU MessageFormat Support
+
+Shipi18n detects and preserves ICU MessageFormat syntax:
+
+```json
+{
+  "greeting": "{gender, select, male {Hello Mr. {name}} female {Hello Ms. {name}} other {Hello {name}}}",
+  "count": "{count, plural, =0 {no items} one {# item} other {# items}}"
+}
+```
+
+The syntax structure is preserved while the translatable text is translated.
+
+### ✅ Namespace Organization
+
+Organize translations by feature or domain:
+
+```json
+{
+  "common": { "save": "Save", "cancel": "Cancel" },
+  "auth": { "login": "Login", "logout": "Logout" },
+  "checkout": { "total": "Total", "pay": "Pay Now" }
+}
+```
+
+Shipi18n auto-detects namespaces and returns organized output.
+
+### ✅ Key Validation
+
+Shipi18n warns about common anti-patterns:
+
+- ❌ Avoid numeric-only keys: `"1": "First"` → Use `"step_1": "First"`
+- ❌ Avoid spaces in keys: `"my key": "Value"` → Use `"my_key": "Value"`
+- ❌ Avoid all-caps keys: `"BUTTON": "Click"` → Use `"button_click": "Click"`
+- ❌ Avoid deeply nested structures (3+ levels)
 
 ## Quick Start
 
@@ -62,13 +130,15 @@ shipi18n translate en.json --languages es,fr,de,ja
 
 ## Integration Examples
 
-| Framework | Repository | Description |
-|-----------|------------|-------------|
+| Framework/Tool | Repository | Description |
+|----------------|------------|-------------|
 | **React** | [shipi18n-react-example](https://github.com/Shipi18n/shipi18n-react-example) | Vite + React integration |
 | **Next.js** | [shipi18n-nextjs-example](https://github.com/Shipi18n/shipi18n-nextjs-example) | App Router + Server Components |
-| **CLI** | [shipi18n-cli](https://github.com/Shipi18n/shipi18n-cli) | Command-line tool |
-| **Vue** | Coming soon | Vue 3 + vue-i18n |
-| **Node.js** | Coming soon | Express/Fastify |
+| **Vue** | [shipi18n-vue-example](https://github.com/Shipi18n/shipi18n-vue-example) | Vue 3 + vue-i18n integration |
+| **CLI** | [@shipi18n/cli](https://github.com/Shipi18n/shipi18n-cli) | Command-line tool for translating locale files |
+| **Node.js API** | [@shipi18n/api](https://github.com/Shipi18n/shipi18n-api) | Official Node.js API client |
+| **Vite Plugin** | [vite-plugin-shipi18n](https://github.com/Shipi18n/vite-plugin-shipi18n) | Automatic build-time translation for Vite |
+| **GitHub Action** | [shipi18n-github-action](https://github.com/Shipi18n/shipi18n-github-action) | Automate translations in CI/CD pipelines |
 
 ## Pricing
 
