@@ -66,6 +66,35 @@ console.log(result.es);
 | **ICU MessageFormat** | Preserves ICU syntax like `{count, plural, one {...} other {...}}` |
 | **Namespace Awareness** | Auto-detects and organizes translations by namespace |
 
+### Smart Caching & Progress Tracking
+
+<table>
+<tr>
+<td width="50%">
+
+**Translation Caching**
+
+Save **30-50% on costs** with intelligent caching:
+- Previously translated strings are served instantly
+- Only new/changed content uses API quota
+- Cache persists across builds and CI runs
+- Automatic cache invalidation on source changes
+
+</td>
+<td width="50%">
+
+**Real-time Progress**
+
+Track translation progress in real-time:
+- Live progress indicators for large files
+- Per-language completion status
+- Detailed logging for CI/CD pipelines
+- Webhook notifications on completion
+
+</td>
+</tr>
+</table>
+
 ## Packages
 
 ### Official SDK & Tools
